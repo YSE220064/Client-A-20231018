@@ -57,6 +57,8 @@ router.get('/item/:id', (req, res) => {
     }
     // views/item/detail.ejs にデータを渡して表示
     res.render('item/detail', data)
+
+    // res.render('item/detail', { title: "商品詳細", item: selectItem } )
 })
 
 // POSTリクエスト
