@@ -33,6 +33,17 @@ router.get('/profile', (req, res) => {
     res.render('profile', data)
 })
 
+// 商品一覧
+router.get('/item', (req, res) => {
+    var data = {
+        title: "商品一覧",
+        items: item.get(),
+    }
+    // views/item/index.ejs にデータを渡して表示
+    res.render('item/index', data)
+})
+
+// 商品詳細
 // /item/xxx のルーティング（パスパラメーター）
 router.get('/item/:id', (req, res) => {
     const id = req.params.id
@@ -40,7 +51,12 @@ router.get('/item/:id', (req, res) => {
     // TODO: case2 APIサーバを利用する
     // itemモデルを使って IDで商品データを取得
     var selectItem = item.find(id)
-    res.send(selectItem.name)
+    var data = {
+        title: "商品詳細",
+        item: selectItem,
+    }
+    // views/item/detail.ejs にデータを渡して表示
+    res.render('item/detail', data)
 })
 
 // POSTリクエスト
